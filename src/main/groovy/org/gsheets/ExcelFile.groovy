@@ -187,7 +187,7 @@ class ExcelFile {
         def sheet = sheetName ? workbook.getSheet(sheetName as String) : workbook.getSheetAt(0)
         assert sheet
 
-        if (rows == -1)  rows  = [1..rowsCounter]
+        if (rows == -1)  rows  = (1..rowsCounter)
         if (rows instanceof  Number) rows = [rows]
 
         rows.each { Number rowIndex ->
@@ -196,8 +196,8 @@ class ExcelFile {
             Row row = sheet.getRow(rowIndex.intValue() - 1)
             if (!row) return
 
-            if (cells == -1)  cells  = [row.firstCellNum..row.lastCellNum]
-            if (rows instanceof  Number) rows = [rows]
+            if (cells == -1)  cells  = (row.firstCellNum..row.lastCellNum)
+//            if (rows instanceof  Number) rows = [rows]
 
             def applyStyleFunc = { Number cellIndex ->
                 assert cellIndex
